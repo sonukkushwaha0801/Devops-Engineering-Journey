@@ -1,0 +1,28 @@
+Role in Ansible
+  -> A role is a standardized way to organize playbooks into a reusable, modular structure (tasks, handlers, vars, files, templates) for a specific function (e.g., nginx, docker).
+
+Why use Roles:
+  -> Improves reusability across projects
+  -> Enforces clean structure and separation of concerns
+  -> Simplifies maintenance and scaling
+  -> Enables team collaboration with consistent layout
+
+When to Use Roles
+  -> When playbooks grow beyond simple tasks
+  -> When the same setup is needed across multiple environments
+  -> When building production-grade automation
+  -> When separating components (web, db, cache, etc.)
+
+COMMAND:
+  ansible-galaxy role init "role_name" -> Creates a predefined directory structure for a role named 'role_name' (tasks/, handlers/, vars/, templates/, files/, etc.).
+
+Key Components of an Ansible Role
+  -> defaults/ → Default variables with lowest precedence
+  -> files/ → Static files to be copied to managed nodes
+  -> handlers/ → Tasks triggered only when notified (e.g., restart service)
+  -> meta/ → Role metadata (dependencies, author, etc.)
+  -> README.md → Documentation for the role
+  -> tasks/ → Main list of tasks executed by the role
+  -> templates/ → Jinja2 templates for dynamic file generation
+  -> tests/ → Test playbooks and inventory for role validation
+  -> vars/ → Variables with higher precedence than defaults

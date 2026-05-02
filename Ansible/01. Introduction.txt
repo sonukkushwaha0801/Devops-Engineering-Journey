@@ -1,0 +1,36 @@
+# What is Ansible?
+Ansible is an agentless configuration management and automation tool used to provision, configure, and manage systems over SSH using declarative tasks.
+                              OR
+Ansible is an open source IT automation engine that automates: provisioning, configuration management, application deployment and orchestration
+
+How Ansible works ?
+  -> Ansible is agentless, so no software installation is required on managed nodes
+  -> Ansible connects to managed nodes and pushes small programs called modules
+  -> These modules represent the desired state of the system
+  -> Modules are executed over SSH by default
+  -> Modules are removed after execution
+  -> Modules are idempotent and only make changes when necessary
+  -> For network devices and appliances, execution happens on the control node
+  -> Ansible communicates with such devices without requiring any agent or service installation
+
+Benefits of using Ansible over Python and Shell Scripting
+
+| Aspect          | Ansible                       | Python / Shell Scripting    |
+| --------------- | ----------------------------- | --------------------------- |
+| Setup           | Agentless (SSH / WinRM)       | Requires custom setup       |
+| Execution Model | Declarative (desired state)   | Imperative (step-by-step)   |
+| Idempotency     | Built-in                      | Manual implementation       |
+| Readability     | YAML (clean, structured)      | Can become complex          |
+| Modules         | Rich built-in ecosystem       | Custom code required        |
+| Parallelism     | Native support                | Manual handling             |
+| Scalability     | Designed for multi-node infra | Harder to scale cleanly     |
+| Error Handling  | Built-in mechanisms           | Manual handling             |
+| Reusability     | Roles, playbooks              | Requires structuring effort |
+| Maintenance     | Standardized, low effort      | Higher long-term effort     |
+
+
+Ansible is an open source IT automation engine that automates:
+  - Configuration Management -> servers ko consistent state me maintain karna
+  - Application Deployment → apps/services deploy karna (Nginx, Docker, etc.)
+  - Provisioning → infrastructure create karna (VMs, cloud resources)
+  - Orchestration → multi-server workflows manage karna introducation ke
