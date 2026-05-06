@@ -1,0 +1,78 @@
+---
+- name: Gather service manager information
+  ansible.builtin.setup:
+    filter:
+      - ansible_service_mgr
+  tags:
+    - validation
+
+- name: Display managed host details
+  ansible.builtin.debug:
+    msg:
+      - "Hostname: {{ inventory_hostname }}"
+      - "OS Family: {{ ansible_facts['os_family'] }}"
+      - "Service Manager: {{ ansible_facts['service_mgr'] }}"
+  tags:
+    - validation
+
+- name: Validate Linux uptime
+  ansible.builtin.command: uptime
+  register: linux_uptime
+  changed_when: false
+  when: ansible_facts['os_family'] != "Windows"
+  tags:
+    - uptime
+
+- name: Show Linux uptime
+  ansible.builtin.debug:
+    var: linux_uptime.stdout_lines
+  when: ansible_facts['os_family'] != "Windows"
+  tags:
+    - uptime
+
+- name: Validate Windows uptime
+  ansible.windows.win_shell: |
+    (get-date) - (gcim Win32_OperatingSystem).LastBootUpTime
+  register: windows_uptime
+  changed_when: false
+  when: ansible_facts['os_family'] == "Windows"
+  tags:
+    - uptime
+
+- name: Show Windows uptime
+  ansible.builtin.debug:
+    var: windows_uptime.stdout_lines
+  when: ansible_facts['os_family'] == "Windows"
+  tags:
+    - uptime
+
+- name: Deploy Linux system info file
+  ansible.builtin.template:
+    src: system_info.j2
+    dest: /tmp/system_info.txt
+    mode: '0644'
+  when: ansible_facts['os_family'] != "Windows"
+  tags:
+    - templates
+
+- name: Deploy Windows system info file
+  ansible.windows.win_template:
+    src: system_info.j2
+    dest: C:\Windows\Temp\system_info.txt
+  when: ansible_facts['os_family'] == "Windows"
+  tags:
+    - templates
+
+- name: Deploy managed MOTD banner on Linux
+  ansible.builtin.copy:
+    content: |
+      ========================================
+      Managed by Ansible
+      Unauthorized access prohibited
+      ========================================
+    dest: /etc/motd
+    mode: '0644'
+  notify: Restart SSH Service
+  when: ansible_facts['os_family'] != "Windows"
+  tags:
+    - motd

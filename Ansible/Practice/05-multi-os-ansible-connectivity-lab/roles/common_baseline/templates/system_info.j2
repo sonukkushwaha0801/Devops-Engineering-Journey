@@ -1,0 +1,12 @@
+========================================
+ Managed By Ansible
+========================================
+
+Environment   : {{ environment }}
+Hostname      : {{ inventory_hostname }}
+OS Family     : {{ ansible_facts['os_family'] }}
+Distribution  : {{ ansible_facts['distribution'] | default('N/A') }}
+Kernel         : {{ ansible_facts['kernel'] | default('N/A') }}
+Architecture  : {{ ansible_facts['architecture'] | default('N/A') }}
+
+========================================
