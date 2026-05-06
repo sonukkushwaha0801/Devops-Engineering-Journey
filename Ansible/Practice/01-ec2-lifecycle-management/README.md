@@ -25,10 +25,15 @@ You are only provided with:
 
 All remaining required files must be manually configured before execution.
 
-If missing:
-- `.pem` key → SSH connection will fail
-- AWS credentials → EC2 provisioning will fail
-- Proper inventory configuration → remote tasks will fail
+Missing configuration will cause:
+
+- `.pem` key → SSH connection failure
+- AWS credentials → EC2 provisioning failure
+- Incorrect inventory configuration → remote task execution failure
+
+Update the `hosts-prod.ini` file with your managed node details.
+
+> Important: Before running the playbook, manually connect to all managed nodes at least once via SSH and verify access using the `.pem` key.
 
 ---
 
