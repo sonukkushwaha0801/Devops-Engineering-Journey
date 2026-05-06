@@ -1,4 +1,4 @@
-# Ansible Concepts: Playbook, Play, Modules, Tasks, and Collections
+Ansible Concepts: Playbook, Play, Modules, Tasks, and Collections
 
 Ansible Playbook — Key Fields
   hosts → Target group or hosts from inventory where tasks run
@@ -12,10 +12,9 @@ Ansible Playbook — Key Fields
   vars_files → External files for variables
   tags → Used to run specific parts of a playbook selectively
 
-## Playbook
-A **Playbook** is a YAML file that defines a series of actions to be executed on managed nodes. It contains one or more "plays" that map groups of hosts to roles.
+Playbook: A Playbook is a YAML file that defines a series of actions to be executed on managed nodes. It contains one or more "plays" that map groups of hosts to roles.
 
-### Example
+Example: 
 ```
 ---
 - name: Update web servers
@@ -49,9 +48,7 @@ A **Playbook** is a YAML file that defines a series of actions to be executed on
       state: started
 ```
 
-## Play
-
-A Play is a single, complete execution unit within a playbook. It specifies which hosts to target and what tasks to execute on those hosts. Plays are used to group related tasks and execute them in a specific order.
+Play: A Play is a single, complete execution unit within a playbook. It specifies which hosts to target and what tasks to execute on those hosts. Plays are used to group related tasks and execute them in a specific order.
 
 ```
 - name: Install and configure Nginx
@@ -63,12 +60,10 @@ A Play is a single, complete execution unit within a playbook. It specifies whic
         state: present
 ```
 
-## Modules
+Modules: Modules are the building blocks of Ansible tasks. They are small programs that perform a specific action on a managed node, such as installing a package, copying a file, or managing services.
 
-Modules are the building blocks of Ansible tasks. They are small programs that perform a specific action on a managed node, such as installing a package, copying a file, or managing services.
-Example
-
-The apt module used in a task to install a package:
+Example: 
+  The apt module used in a task to install a package:
 
 ```
 - name: Install Nginx
@@ -77,9 +72,7 @@ The apt module used in a task to install a package:
     state: present
 ```
 
-## Tasks
-
-Tasks are individual actions within a play that use modules to perform operations on managed nodes. Each task is executed in order and can include conditionals, loops, and handlers.
+Tasks: Tasks are individual actions within a play that use modules to perform operations on managed nodes. Each task is executed in order and can include conditionals, loops, and handlers.
 
 ```
 - name: Install Nginx
@@ -93,12 +86,9 @@ Tasks are individual actions within a play that use modules to perform operation
     state: started
 ```
 
-## Collections
-
-Collections are a distribution format for Ansible content. They bundle together multiple roles, modules, plugins, and other Ansible artifacts. Collections make it easier to share and reuse Ansible content.
-Example
-
-A collection structure might look like this:
+Collections: Collections are a distribution format for Ansible content. They bundle together multiple roles, modules, plugins, and other Ansible artifacts. Collections make it easier to share and reuse Ansible content.
+Example: 
+  A collection structure might look like this:
 
 ```
 my_collection/
@@ -112,7 +102,7 @@ my_collection/
 └── README.md
 ```
 
-### Using a Collection
+Using a Collection: 
 
 ```
 - name: Use a custom module from a collection

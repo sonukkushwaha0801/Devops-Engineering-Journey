@@ -1,0 +1,31 @@
+Error Handling in Ansible Playbooks:
+  -> ignore_errors: true → Continue execution even if a task fails
+  -> failed_when → Define custom failure conditions
+  -> changed_when → Control when a task is marked as changed
+  -> register → Capture task output for conditional logic
+  -> when → Run tasks conditionally based on variables/results
+  -> block / rescue / always → Structured error handling (try/catch style)
+  -> retries + until + delay → Retry a task until success
+  -> any_errors_fatal: true → Stop play on all hosts if one fails
+  -> max_fail_percentage → Fail play if failure threshold exceeds limit
+
+Order od execution in Ansible Playbooks:
+  -> Inventory is loaded
+  -> Play starts (hosts targeted)
+  -> gather_facts runs (if enabled)
+  -> vars / vars_files are loaded
+  -> roles are executed (in defined order)
+  -> tasks are executed sequentially (top to bottom; next task runs only after previous succeeds)
+  -> handlers are triggered (only if notified)
+  -> handlers run at the end of the play
+  -> next play (if any) starts
+
+Example of ignore_errors in script:
+```
+- name: Install package
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+  ignore_errors: true
+
+```

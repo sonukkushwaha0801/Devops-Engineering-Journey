@@ -1,4 +1,4 @@
-# What is Ansible?
+What is Ansible?
 Ansible is an agentless configuration management and automation tool used to provision, configure, and manage systems over SSH using declarative tasks.
                               OR
 Ansible is an open source IT automation engine that automates: provisioning, configuration management, application deployment and orchestration

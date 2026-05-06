@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Getting Dathered Facts for knowing the OS_family names
+      ansible.builtin.debug:
+        var: ansible-facts['os_family']
+
+    - name: Shutdown ubuntu instances only
+      ansible.builtin.command: /sbin/shutdown -t now
+      when:
+       ansible_facts['os_family'] == "Debian"
