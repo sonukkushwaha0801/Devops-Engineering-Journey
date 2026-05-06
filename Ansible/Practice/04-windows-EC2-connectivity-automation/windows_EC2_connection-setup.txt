@@ -1,0 +1,289 @@
+WINDOWS EC2 CONNECTION SETUP USING ANSIBLE
+==========================================
+
+PROJECT:
+04-windows-ec2-connectivity-automation
+
+OBJECTIVE:
+Establish Ansible connectivity from Kali Linux control node to Windows EC2 managed node using WinRM.
+
+===========================================================
+1. CREATE WINDOWS EC2 INSTANCE
+===========================================================
+
+Recommended AMI:
+- Windows Server 2022 Base
+
+Recommended Instance Type:
+- t3.medium
+
+Instance Name:
+- ansible-win-node-1
+
+Attach:
+- Existing .pem key pair
+- Elastic IP
+
+-----------------------------------------------------------
+SECURITY GROUP RULES
+-----------------------------------------------------------
+
+Allow inbound ports:
+
+- RDP        -> TCP 3389
+- WinRM HTTP -> TCP 5985
+- WinRM HTTPS -> TCP 5986
+
+IMPORTANT:
+Restrict access to YOUR_PUBLIC_IP/32 only.
+
+===========================================================
+2. RETRIEVE WINDOWS PASSWORD
+===========================================================
+
+AWS Console:
+
+EC2
+→ Instance
+→ Actions
+→ Security
+→ Get Windows Password
+
+Upload:
+- .pem file
+
+Decrypt password.
+
+Credentials:
+
+Username:
+- Administrator
+
+Password:
+- Retrieved decrypted password
+
+===========================================================
+3. CONNECT TO WINDOWS FROM KALI LINUX
+===========================================================
+
+Install RDP tools:
+
+sudo apt update
+sudo apt install remmina freerdp2-x11 -y
+
+Connect using:
+
+xfreerdp /cert:ignore /u:Administrator "/p:WINDOWS_PASSWORD" /v:WINDOWS_PUBLIC_IP
+
+Example:
+
+xfreerdp /cert:ignore /u:Administrator "/p:MyPassword123!" /v:3.108.xx.xx
+
+===========================================================
+4. CONFIGURE WINRM INSIDE WINDOWS
+===========================================================
+
+Open:
+- PowerShell as Administrator
+
+Run commands:
+
+winrm quickconfig -q
+
+Enable-PSRemoting -Force
+
+Set-Item WSMan:\localhost\Service\Auth\Basic -Value $true
+
+Set-Item WSMan:\localhost\Service\AllowUnencrypted -Value $true
+
+Restart-Service WinRM
+
+===========================================================
+5. VERIFY WINRM LISTENER
+===========================================================
+
+Run:
+
+winrm enumerate winrm/config/listener
+
+Expected:
+
+Transport = HTTP
+Port = 5985
+
+===========================================================
+6. CONFIGURE WINDOWS FIREWALL
+===========================================================
+
+Enable WinRM firewall rules:
+
+Enable-NetFirewallRule -DisplayGroup "Windows Remote Management"
+
+Allow WinRM port:
+
+New-NetFirewallRule -DisplayName "WinRM 5985" -Direction Inbound -Protocol TCP -LocalPort 5985 -Action Allow
+
+===========================================================
+7. VERIFY WINRM SERVICE
+===========================================================
+
+Check service:
+
+Get-Service WinRM
+
+Expected:
+
+Status:
+Running
+
+If stopped:
+
+Start-Service WinRM
+
+===========================================================
+8. VERIFY PORT LISTENING
+===========================================================
+
+Run:
+
+netstat -ano | findstr 5985
+
+Expected:
+
+0.0.0.0:5985
+
+===========================================================
+9. INSTALL ANSIBLE DEPENDENCIES ON KALI
+===========================================================
+
+Install collection:
+
+ansible-galaxy collection install ansible.windows
+
+Install Python libraries:
+
+pip install pywinrm requests-ntlm
+
+===========================================================
+10. CREATE INVENTORY
+===========================================================
+
+File:
+inventories/prod/hosts.ini
+
+Content:
+
+[windows]
+ansible-win-node-1 ansible_host=WINDOWS_PUBLIC_IP
+
+[windows:vars]
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+ansible_port=5985
+
+===========================================================
+11. CREATE GROUP VARIABLES
+===========================================================
+
+File:
+inventories/prod/group_vars/windows.yml
+
+Content:
+
+---
+ansible_user: Administrator
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+ansible_winrm_server_cert_validation: ignore
+ansible_port: 5985
+ansible_winrm_scheme: http
+
+===========================================================
+12. CREATE ANSIBLE VAULT
+===========================================================
+
+Create vault:
+
+ansible-vault create vars/windows-secrets.yml
+
+Content:
+
+---
+ansible_password: 'WINDOWS_PASSWORD'
+
+===========================================================
+13. VERIFY WINRM CONNECTIVITY
+===========================================================
+
+From Kali Linux:
+
+nc -zv WINDOWS_PUBLIC_IP 5985
+
+Expected:
+
+succeeded
+
+===========================================================
+14. TEST ANSIBLE CONNECTIVITY
+===========================================================
+
+Run:
+
+ansible windows \
+-i inventories/prod/hosts.ini \
+-m ansible.windows.win_ping \
+-e "@vars/windows-secrets.yml" \
+--ask-vault-pass
+
+Expected:
+
+pong
+
+===========================================================
+15. EXECUTE PLAYBOOK
+===========================================================
+
+Run:
+
+ansible-playbook \
+-i inventories/prod/hosts.ini \
+playbooks/win-connectivity-check.yml \
+--ask-vault-pass
+
+Expected:
+
+ok=1
+failed=0
+
+===========================================================
+16. COMMON ISSUES
+===========================================================
+
+1. Connection Refused
+- Security Group missing 5985
+- WinRM listener not configured
+- Firewall blocking WinRM
+
+2. ntlm credentials rejected
+- Wrong Administrator password
+- Incorrect vault formatting
+
+3. UNREACHABLE host
+- Wrong IP
+- WinRM service stopped
+- Port inaccessible
+
+4. YAML parsing issues
+- Incorrect vault syntax
+- Missing quotes around password
+
+===========================================================
+17. IMPORTANT NOTES
+===========================================================
+
+- Do NOT push vault secrets to GitHub
+- Use Elastic IP for stable connectivity
+- Use production-style inventory structure
+- Always validate WinRM before running playbooks
+- Windows automation troubleshooting is heavily network-dependent

@@ -1,0 +1,57 @@
+# =========================
+# Ansible
+# =========================
+*.retry
+*.retry.json
+
+# =========================
+# Ansible Vault Password Files
+# =========================
+vault_pass.txt
+.vault_pass
+*.vault
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Virtual Environment
+# =========================
+.venv/
+venv/
+env/
+ansible-venv/
+
+# =========================
+# SSH / PEM Keys
+# =========================
+*.pem
+*.ppk
+*.key
+
+# =========================
+# Sensitive Inventory Overrides
+# =========================
+inventories/*/host_vars/*
+inventories/*/group_vars/windows/vault.yml
+
+# =========================
+# VSCode
+# =========================
+.vscode/
+
+# =========================
+# JetBrains
+# =========================
+.idea/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db

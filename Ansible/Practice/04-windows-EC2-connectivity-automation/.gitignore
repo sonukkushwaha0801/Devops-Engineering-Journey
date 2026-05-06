@@ -1,0 +1,23 @@
+# Ansible
+*.retry
+
+# Vault / secrets
+vault_pass.txt
+*.vault
+
+# SSH Keys
+*.pem
+*.ppk
+
+# Python
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
