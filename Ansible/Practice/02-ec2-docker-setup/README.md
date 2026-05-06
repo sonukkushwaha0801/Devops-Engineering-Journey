@@ -136,13 +136,15 @@ You are only provided with:
 
 All other required files must be **manually placed in the correct location** before execution.
 
-If missing:
+Missing configuration will cause:
 
-- SSH key (`.pem`) → connection will fail
-- `vault.pass` (if used) → playbook will fail
-- Proper directory structure → execution issues
+- `.pem` key → SSH connection failure
+- AWS credentials → EC2 provisioning failure
+- Incorrect inventory configuration → remote task execution failure
 
----
+Update the `hosts-prod.ini` file with your managed node details.
+
+> Important: Before running the playbook, manually connect to all managed nodes at least once via SSH and verify access using the `.pem` key.
 
 ### Expected Structure
 
