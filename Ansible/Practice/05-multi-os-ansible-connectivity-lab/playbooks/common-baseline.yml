@@ -1,0 +1,7 @@
+---
+- name: Execute Common Baseline Role
+  hosts: all
+  gather_facts: true
+
+  roles:
+  - common_baseline

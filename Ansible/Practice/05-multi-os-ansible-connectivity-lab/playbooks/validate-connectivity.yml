@@ -1,0 +1,24 @@
+---
+- name: Validate Linux Connectivity
+  hosts: linux
+  gather_facts: true
+
+  tasks:
+    - name: Validate Linux ping
+      ansible.builtin.ping:
+
+    - name: Display Linux hostname
+      ansible.builtin.debug:
+        msg: "Connected to {{ inventory_hostname }}"
+
+- name: Validate Windows Connectivity
+  hosts: windows
+  gather_facts: true
+
+  tasks:
+    - name: Validate Windows ping
+      ansible.windows.win_ping:
+
+    - name: Display Windows hostname
+      ansible.builtin.debug:
+        msg: "Connected to {{ inventory_hostname }}"
