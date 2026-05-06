@@ -1,0 +1,22 @@
+---
+- name: Enforce S3 bucket versioning on AWS account
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+    - name: List S3 buckets in AWS account
+      amazon.aws.s3_bucket_info:
+      register: result
+
+    - name: Display discovered buckets
+      ansible.builtin.debug:
+        var: result.buckets
+
+    - name: Enable versioning on S3 buckets
+      amazon.aws.s3_bucket:
+        name: "{{ item.name }}"
+        versioning: true
+      loop: "{{ result.buckets }}"
+

@@ -1,0 +1,32 @@
+Ansible Vault:
+  -> It is a security feature used to encrypt sensitive data such as passwords, API keys/ API token, and secrets inside Ansible files, allowing secure storage and sharing of automation code.
+
+Why should we need Ansible Vault:
+  -> This is needed to securely store sensitive information in playbooks and repositories without exposing credentials in plain text, especially in production environments and GitHub-based workflows.
+
+When we use Ansible Vault:
+  -> When storing passwords, API keys, or tokens
+  -> When pushing Ansible code to GitHub repositories
+  -> When managing production infrastructure
+  -> When sharing automation code across teams
+  -> When securing cloud credentials and SSH secrets
+  -> When preventing sensitive data exposure in plain text
+
+CMDS:
+  CREATE ENCRYPT FILE:
+    -> ansible-vault create secrets.yml
+  EDIT ENCRYPTED FILE:
+    -> ansible-vault edit secrets.yml
+  VIEW ENCRYPTED FILE:
+    -> ansible-vault view secrets.yml
+  ENCRYPT EXISTING FILE:
+    -> ansible-vault encrypt file.yml
+  DECRYPT EXISTING FILE:
+    -> ansible-vault decrypt file.yml
+  RUN PLAYBOOK USING VAULT:
+    -> ansible-playbook playbook.yaml --ask-vault-pass
+  USE PASSWORD FILE (non-interactive):
+    -> ansible-playbook playbook.yml --vault-password-file vault.pass
+  ENCRYPT THE GIVEN STRING:
+    -> ansible-vault encrypt_string "String" --vault-password-file vault.pass
+
