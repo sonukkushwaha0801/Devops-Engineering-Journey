@@ -1,0 +1,21 @@
+services:
+
+  django-app:
+    build: .
+
+    container_name: django-app
+
+    ports:
+      - "8000:8000"
+
+    restart: unless-stopped
+
+  selenium-bot:
+    build:
+      context: .
+      dockerfile: selenium.Dockerfile
+
+    container_name: selenium-bot
+
+    depends_on:
+      - django-app
