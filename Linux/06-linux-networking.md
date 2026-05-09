@@ -1,4 +1,4 @@
-````markdown id="gq2q5o"
+
 # Linux Networking
 
 ## Introduction
@@ -473,4 +473,3 @@ Understanding networking is essential for:
 - Cloud computing
 - Infrastructure troubleshooting
 - Production operations
-````

@@ -1,4 +1,4 @@
-````markdown id="t8n4zm"
+
 # Shell Scripting in Linux
 
 ## What is Shell Scripting?
@@ -402,4 +402,3 @@ Understanding shell scripting is essential for:
 - Linux administration
 - Cloud operations
 - Automation workflows
-````

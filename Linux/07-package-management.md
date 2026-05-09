@@ -1,4 +1,4 @@
-````markdown id="r7m2xk"
+
 # Package Management in Linux
 
 ## What is Package Management?
@@ -405,4 +405,3 @@ Understanding package management is essential for:
 - Linux administration
 - Cloud infrastructure
 - Automation workflows
-````

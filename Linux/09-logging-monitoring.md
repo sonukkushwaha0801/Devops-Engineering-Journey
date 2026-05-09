@@ -1,4 +1,4 @@
-````markdown id="x7m1qp"
+
 # Logging & Monitoring in Linux
 
 ## Introduction
@@ -492,4 +492,3 @@ Understanding these tools is essential for:
 - Linux administration
 - Infrastructure monitoring
 - Production troubleshooting
-````

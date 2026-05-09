@@ -1,4 +1,4 @@
-````markdown id="5xclj5"
+
 # systemd & Service Management in Linux
 
 ## Introduction
@@ -425,4 +425,3 @@ Understanding systemd is essential for:
 - Linux administration
 - Cloud infrastructure
 - Production troubleshooting
-````

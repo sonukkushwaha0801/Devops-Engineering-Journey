@@ -1,4 +1,4 @@
-````markdown id="k7v2sa"
+
 # Process Management in Linux
 
 ## Introduction
@@ -412,4 +412,3 @@ Understanding processes is essential for:
 - Linux administration
 - System monitoring
 - Production troubleshooting
-````

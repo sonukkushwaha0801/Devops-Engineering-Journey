@@ -1,4 +1,3 @@
-````markdown
 # Users, Groups & Permissions in Linux
 
 ## Introduction
@@ -567,4 +566,3 @@ Understanding this model is essential for:
 - Security hardening
 - Cloud infrastructure management
 - Production troubleshooting
-````
