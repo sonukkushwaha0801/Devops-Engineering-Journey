@@ -1,141 +1,86 @@
 # DevOps-Engineering-Journey
 
-## Current Progress
+## Overview
 
 This repository documents my hands-on journey toward becoming a production-focused DevOps & Cloud Engineer.
 
-The goal of this repository is not just learning syntax, but building real operational understanding of:
+The repository contains:
+- Revision Notes
+- Practice Projects
+- Interview Preparation Notes
+- Scenario-Based Infrastructure Projects
 
-* Linux Administration
-* Automation
-* Infrastructure Management
-* DevOps Practices
-* Cloud & Deployment Workflows
+focused on:
+- Linux
+- Ansible
+- Terraform
+- Docker
+- CI/CD
+- Kubernetes
+- Cloud & DevOps Engineering
+
+The primary goal is to build real-world operational and infrastructure engineering skills through practical implementation.
 
 ---
 
-# Completed Sections
+# Current Sections
+
+## Linux ✅
+
+Contains:
+- Linux revision notes
+- administration concepts
+- operational practices
+- shell scripting fundamentals
+
+---
 
 ## Ansible ✅
 
-Completed topics:
-
-* Introduction to Ansible
-* Inventory Management
-* Passwordless SSH Authentication
-* YAML Basics
-* Ansible Playbooks
-* Roles
-* Ansible Galaxy
-* Collections
-* Error Handling
-* Ansible Vault
-* Policy as Code
+Contains:
+- Ansible notes
+- automation practice projects
+- infrastructure automation workflows
+- operational playbooks
 
 ---
 
-## Ansible Practice Projects ✅
+## Terraform 🚧
 
-### 01-EC2-lifecycle-management
-
-* EC2 provisioning
-* Loop usage
-* SSH automation
-* Conditional shutdown
-
-### 02-EC2-Docker-setup
-
-* Docker installation automation
-* OpenSSH/OpenSSL upgrades
-* Conditional package management
-
-### 03-S3-Versioning-management
-
-* AWS CLI configuration
-* S3 bucket validation
-* S3 versioning automation
-
-### 04-windows-EC2-connectivity-automation
-
-* Windows remote connectivity automation
-* SSH/RDP operational workflow
-
-### 05-multi-OS-ansible-connectivity-lab
-
-* Multi-node Ansible communication
-* Linux/Windows connectivity testing
+Contains:
+- production-oriented Terraform notes
+- Terraform practice implementations
+- interview-focused revision notes
+- infrastructure provisioning practices
+- remote backend setup
+- state management workflows
+- reusable module architecture
+- scenario-based infrastructure projects
 
 ---
 
-# Linux ✅
-
-Completed core Linux concepts required for:
-
-* DevOps
-* Cloud Engineering
-* Linux Administration
-* Infrastructure Operations
-
-Covered topics:
-
-* Linux Architecture
-* Filesystem Management
-* Users & Permissions
-* Process Management
-* systemd & Services
-* Networking
-* Package Management
-* Storage Management
-* Shell Scripting
-* Logging & Monitoring
-
----
-
-# Existing Linux Automation Project ✅
-
-## Linux-Automation-Toolkit
-
-This separate repository contains:
-
-* User Management Automation
-* Log Management
-* Network Management
-* Process Management
-* File Management
-* System Information Tools
-
-The project focuses on:
-
-* Shell scripting
-* Linux automation
-* Interactive operational tooling
-* Real-world Linux administration workflows
-
----
-
-# Next Planned Sections
-
-* Docker
-* CI/CD
-* Kubernetes
-* Terraform
-* Monitoring Stack
-* Cloud Infrastructure
-* Production Deployments
-
----
-
-# Repository Goal
+# Repository Focus
 
 This repository is focused on:
+- Infrastructure Automation
+- DevOps Engineering
+- Cloud Operations
+- Infrastructure as Code
+- Production-Oriented Learning
+- Real-World DevOps Practices
 
-* Real-world DevOps engineering
-* Linux operations
-* Automation
-* Infrastructure management
-* Production-oriented learning
+---
 
-The objective is to transition from:
+# Learning Roadmap
 
-Linux Administration → Automation → DevOps → Cloud Engineering → Infrastructure Engineering
-
+```text
+Linux Administration
+        ↓
+Automation Engineering
+        ↓
+DevOps Engineering
+        ↓
+Cloud Engineering
+        ↓
+Infrastructure Engineering
+```
