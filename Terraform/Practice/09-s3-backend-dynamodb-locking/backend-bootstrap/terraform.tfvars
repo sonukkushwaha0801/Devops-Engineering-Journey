@@ -1,0 +1,5 @@
+aws_region          = "ap-south-1"
+bucket_name         = "zenithra-terraform-state-demo"
+dynamodb_table_name = "terraform-state-lock"
+environment         = "Production"
+key_pair_name       = "terraform-practice-key"

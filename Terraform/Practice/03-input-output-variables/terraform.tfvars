@@ -1,0 +1,5 @@
+aws_region    = "ap-south-1"
+ami_id        = "ami-07a00cf47ddbc844c"
+instance_type = "t3.micro"
+instance_name = "terraform-variable-demo"
+# key_name      = "mumbai-key-1"
