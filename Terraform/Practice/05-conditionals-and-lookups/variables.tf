@@ -26,6 +26,6 @@ variable "instance_types" {
   default = {
     dev     = "t2.micro"
     staging = "t2.small"
-    prod    = "t3.medium"
+    prod    = "t2.xlarge"
   }
 }
