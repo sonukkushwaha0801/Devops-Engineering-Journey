@@ -1,0 +1,9 @@
+aws_region            = "us-east-1"
+environment           = "prod"
+cidr_block            = "10.2.0.0/16"
+az_count              = 3
+instance_type         = "t3.medium"
+instance_count        = 3
+db_instance_class     = "db.t3.medium"
+allocated_storage     = 100
+backup_retention_days = 30

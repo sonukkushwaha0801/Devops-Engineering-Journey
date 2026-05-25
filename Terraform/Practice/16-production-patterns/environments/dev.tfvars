@@ -1,0 +1,9 @@
+aws_region            = "us-east-1"
+environment           = "dev"
+cidr_block            = "10.0.0.0/16"
+az_count              = 1
+instance_type         = "t2.micro"
+instance_count        = 1
+db_instance_class     = "db.t3.micro"
+allocated_storage     = 20
+backup_retention_days = 1

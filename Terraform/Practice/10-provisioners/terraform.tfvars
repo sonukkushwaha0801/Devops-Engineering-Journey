@@ -1,0 +1,6 @@
+aws_region       = "ap-south-1"
+ami_id           = "ami-07a00cf47dbbc844c"
+instance_type    = "t3.micro"
+instance_name    = "Terravisioning System"
+key_pair_name    = "aws-south-1"
+private_key_path = "~/Downloads/AWS_Credentials/aws-south-1.pem"

@@ -1,0 +1,9 @@
+aws_region            = "us-east-1"
+environment           = "staging"
+cidr_block            = "10.1.0.0/16"
+az_count              = 2
+instance_type         = "t3.small"
+instance_count        = 2
+db_instance_class     = "db.t3.small"
+allocated_storage     = 50
+backup_retention_days = 7
